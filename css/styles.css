@@ -17,13 +17,13 @@
 body{
     padding: 2rem 0 0 0;
     font-family: var(--pipons);
-    bac
+    
 
 }
 .headeR{
 
     height: auto;
-    max-width: 470px;
+    max-width: 500px;
     margin: 0 auto;
     padding: 0 1.5rem 0 1.5rem;
 
@@ -103,18 +103,21 @@ body{
     height: 780px;
     margin: 0 auto;
     padding: 0 1.5rem 0 1.5rem;
-    
+    z-index: 1;
 
 }
 .Started__img{
     width: 100%;
     margin: 0 auto;
     overflow: hidden;
+    z-index: 3;
+    
    
     img{
         width:150%;
         position: relative;
-        left: 2.5%;
+        left: -10px;
+        z-index: 2;
     }
 }
 .Started__text{
@@ -136,7 +139,7 @@ body{
 
 }
 .Links__section{
-    max-width: 470px;
+    max-width: 500px;
     height: auto;
     margin: 0 auto;
     padding: 5.5rem 1.5rem 2.5rem 1.5rem;
@@ -232,14 +235,14 @@ body{
 }
 .statistics{
     position: relative;
-    padding: 5rem 1.5rem 0 1.5rem;
+    padding: 5rem 1.5rem 5rem 1.5rem;
     text-align: center;
     color: var(--DarkViolet);
     background-color: hsl(0, 0%, 95%);
     display: flex;
     flex-direction: column;
     gap: 5rem;
-    max-width: 470px;
+    max-width: 500px;
     margin: 0 auto;
     z-index: 1;
   
@@ -292,11 +295,40 @@ body{
     content: "";
     position: absolute;
     top:500px ; 
-    bottom: 0;
+    bottom: 250px;
     left: 0;
     right: 0;
     margin: auto;
-    width: .7rem;
+    width: .6rem;
     background-color:var(--Cyan); /* Puedes cambiar el color según tus necesidades */
     z-index: 2;
 }
+
+.btnBottom{
+    height: 15rem;
+    background-image: url(/images/bg-boost-mobile.svg);
+    background-color: var(--DarkViolet);
+    color: #fff;
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: larger;
+    button{
+        width: 12.5rem;
+        height: 4rem;
+        border: none;
+        border-radius: 35px;
+        font-family: var(--pipons);
+        font-weight: 800;
+        font-size: large;
+        background-color: var(--Cyan);
+        color: #fff;
+        
+    
+    }
+}
+
