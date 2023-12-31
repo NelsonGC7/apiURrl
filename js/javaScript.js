@@ -1,3 +1,6 @@
+const burger = document.getElementById('burger');
+const nav = document.getElementById('headeR_navID');
+
 const url = 'https://url-shortener-service.p.rapidapi.com/shorten';
 const options = {
     method: 'POST',
@@ -10,10 +13,24 @@ const options = {
 	    	url: 'https://www.youtube.com/watch?v=7-pnUgGurMU&list=RDEMpkUuvOoduuY0Cxxwh8iRMA&index=10'
 	    }),
 };
-    
-    fetch(url,options)
+
+const menuActive = ()=>{
+	burger.addEventListener('click',()=>{
+		nav.classList.remove("desactiv"),nav.classList.toggle("headeR__nav")
+		if(!nav.classList.contains('headeR__nav')){
+			nav.classList.add("desactiv");
+		}
+	})
+}
+menuActive()
+
+const FETCH = (URL,OPTIONS)=>{
+    fetch(URL,OPTIONS)
         .then(datos =>{
-         console.log(datos)
+         
         
         })
+}
+FETCH(url,options)
+
 

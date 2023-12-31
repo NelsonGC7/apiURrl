@@ -22,6 +22,10 @@ body{
     
 
 }
+.desactiv{
+    display: none;
+
+}
 .headeR{
 
     height: auto;
