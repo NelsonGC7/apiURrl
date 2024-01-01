@@ -1,7 +1,9 @@
 const burger = document.getElementById('burger');
 const nav = document.getElementById('headeR_navID');
+const InputUrl = document.getElementById('URL');
+const bton = document.getElementById('headeR__subl-btonID')
 
-const url = 'https://url-shortener-service.p.rapidapi.com/shorten';
+const url = InputUrl.value;
 const options = {
     method: 'POST',
     headers: {
@@ -22,7 +24,7 @@ const menuActive = ()=>{
 		}
 	})
 }
-menuActive()
+
 
 const FETCH = (URL,OPTIONS)=>{
     fetch(URL,OPTIONS)
@@ -30,7 +32,64 @@ const FETCH = (URL,OPTIONS)=>{
          
         
         })
+};
+
+
+const erroeInput= ()=>{
+	document.querySelector('form').addEventListener('submit',(e)=>{
+		e.preventDefault()
+	});
+	
+	
+	const parrafo = document.createElement('p');
+	parrafo.innerHTML = ('escribe en una URL');
+	parrafo.setAttribute ('class','errorINPUT');
+	
+	const erRepetido = document.querySelector('.errorINPUT');	
+	bton.addEventListener('click',()=>{
+		if(InputUrl.value ===''){
+			InputUrl.insertAdjacentElement('afterend',parrafo)
+			if(erRepetido){
+				erRepetido.remove()
+			}else{
+				InputUrl.insertAdjacentElement('afterend',parrafo)
+			}
+			return false;
+				
+		}else{
+				if(parrafo){
+				 parrafo.remove()
+				}
+			
+			
+			
+		}
+	
+		
+			
+			
+	})
+
 }
-FETCH(url,options)
+
+
+
+
+
+
+
+
+
+erroeInput()
+menuActive()
+FETCH(url,options);
+
+
+
+
+
+
+
+console.log(bton)
 
 
