@@ -2,18 +2,46 @@ const burger = document.getElementById('burger');
 const nav = document.getElementById('headeR_navID');
 const InputUrl = document.getElementById('URL');
 const bton = document.getElementById('headeR__subl-btonID');
-const pedido = 'https://api-ssl.bitly.com/v4/shorten';
-const cors = 'https://cors-anywhere.herokuapp.com/';
+
+const copy = document.querySelectorAll('section .Links__copy')
 
 
-const options =  {
-    method: 'POST',
-    headers: {
-        'Authorization': 'Bearer {976c57808e8a9c369a9eec627edc80377a3bb34c}',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ "long_url": 'https://youtu.be/8d651ukb-Y8?si=T-ZRCEY6DehICM3h', "domain": "bit.ly", "group_guid": "Ba1bc23dE4F" })
-};
+	    
+
+const EnviarPeticon = (urrl)=>{
+	const url = 'https://url-shortener-service.p.rapidapi.com/shorten';
+	const options = {
+		method: 'POST',
+		headers: {
+			'content-type': 'application/x-www-form-urlencoded',
+			'X-RapidAPI-Key': '60f7e74316msh27534207aad635dp1490fejsnc78d61181d90',
+			'X-RapidAPI-Host': 'url-shortener-service.p.rapidapi.com'
+		},
+		body: new URLSearchParams({
+			url:`${urrl}`,
+		})
+	};
+	
+	fetch(url,options)
+				.then(respuesta => respuesta.json())
+				.then(data =>{
+					const urlContein = document.createElement('section');
+					urlContein.setAttribute('class','Links__copy')
+					urlContein.innerHTML = `
+					<div class="Links__copy-url">
+						<p>${InputUrl.value}</p>
+					</div>
+					<div class="Links__copy-bt">
+						<a href= "${data.result_url}">${data.result_url}</a>
+						<button class="Links__copy-bton">Copy</button>
+					</div>
+					`
+					
+					document.querySelector('form').insertAdjacentElement('afterend',urlContein)
+					console.log(data)
+				})
+				.catch(error => console.log(error))			
+}
 
 const menuActive = ()=>{
 	burger.addEventListener('click',()=>{
@@ -22,68 +50,48 @@ const menuActive = ()=>{
 			nav.classList.add("desactiv");
 		}
 	})
-}
-
-
-const FETCH = (URL,OPTIONS)=>{
-    fetch(URL,OPTIONS)
-        .then(respuesta =>{
-            console.log(respuesta)
-        })
-        .catch(err =>{
-			console.log(err)
-        
-        
-        })
 };
-document.querySelector('form').addEventListener('submit',(e)=>{
-	e.preventDefault()
+const validarUrl = (url) =>{
+	const regex = /^(ftp|http|https):\/\/[^ "]+$/;
+	return regex.test(InputUrl.value);
 	
-});
-
-
-
-const erroeInput= ()=>{
-	const parrafo = document.createElement('p');
-	parrafo.innerHTML = ('escribe en una URL');
-	parrafo.setAttribute ('class','errorINPUT');
-	const erRepetido = document.querySelector('.errorINPUT');	
-	
-	
-	bton.addEventListener('click',()=>{
-		if(InputUrl.value ===''){
-			InputUrl.insertAdjacentElement('afterend',parrafo)
+};
+const errorInput= ()=>{
+	document.querySelector('form').addEventListener('submit',(e)=>{
+		e.preventDefault()
+		const erRepetido = document.querySelector('.errorINPUT');
+		if(!validarUrl(InputUrl.value)){
+			if(!erRepetido){
+				const parrafo = document.createElement('p');
+				parrafo.innerHTML = 'Escribe una URL correcta ej : "https://google.com"';
+                parrafo.setAttribute('class', 'errorINPUT');
+                InputUrl.insertAdjacentElement('afterend', parrafo);
+			};
+		}else{
 			if(erRepetido){
 				erRepetido.remove()
-			}else{
-				InputUrl.insertAdjacentElement('afterend',parrafo)
 			}
-			
-				
-		}else{
-				url = InputUrl.value
-				if(parrafo){
-				 parrafo.remove()
-				}
+			EnviarPeticon(InputUrl.value)
 			
 			
 			
 		};
-		FETCH(`${cors}https://api-ssl.bitly.com/v4/shorten`,options);
-		
-	})
+	});	
+};
 
-}
+/*
+	 <section class="Links__copy ">
+      <div class="Links__copy-url">
+        <p>hhht\\google weon.com</p>
+      </div>
+      <div class="Links__copy-bt">
+        <p>Lorem ipsum dolor sit amet consecm </p>
+        <button class="Links__copy-bton">Copy</button>
+      </div>
+    </section>
 
-
-
-
-
-
-
-
-
-erroeInput()
+*/
+errorInput()
 menuActive()
 
 
