@@ -3,11 +3,21 @@ const nav = document.getElementById('headeR_navID');
 const InputUrl = document.getElementById('URL');
 const bton = document.getElementById('headeR__subl-btonID');
 
-const copy = document.querySelectorAll('section .Links__copy')
 
 
-	    
-
+const menuActive = ()=>{
+	burger.addEventListener('click',()=>{
+		nav.classList.remove("desactiv"),nav.classList.toggle("headeR__nav")
+		if(!nav.classList.contains('headeR__nav')){
+			nav.classList.add("desactiv");
+		}
+	})
+};
+const validarUrl = (url) =>{
+	const regex = /^(ftp|http|https):\/\/[^ "]+$/;
+	return regex.test(InputUrl.value);
+	
+};
 const EnviarPeticon = (urrl)=>{
 	const url = 'https://url-shortener-service.p.rapidapi.com/shorten';
 	const options = {
@@ -23,39 +33,37 @@ const EnviarPeticon = (urrl)=>{
 	};
 	
 	fetch(url,options)
+	
 				.then(respuesta => respuesta.json())
 				.then(data =>{
-					const urlContein = document.createElement('section');
-					urlContein.setAttribute('class','Links__copy')
-					urlContein.innerHTML = `
-					<div class="Links__copy-url">
-						<p>${InputUrl.value}</p>
-					</div>
-					<div class="Links__copy-bt">
-						<a href= "${data.result_url}">${data.result_url}</a>
-						<button class="Links__copy-bton">Copy</button>
-					</div>
-					`
-					
-					document.querySelector('form').insertAdjacentElement('afterend',urlContein)
-					console.log(data)
+					if(data){
+						const urlContein = document.createElement('section');
+						urlContein.setAttribute('class','Links__copy')
+						urlContein.innerHTML = `
+						<div class="Links__copy-url">
+							<p>${InputUrl.value}</p>
+						</div>
+						<div class="Links__copy-bt">
+							<a href= "${data.result_url}">${data.result_url}</a>
+							<button class="Links__copy-bton">Copy</button>
+						</div>
+						`
+						document.querySelector('form').insertAdjacentElement('afterend',urlContein)
+						const btonCopy = document.querySelector('.Links__copy').children[1].children[1];
+						const txtAcopy = document.querySelector('.Links__copy').children[1].children[0];
+						btonCopy.addEventListener('click',()=>{
+							navigator.clipboard.writeText(txtAcopy.innerHTML)
+								.then(()=>console.log('texto con exito'))
+								.catch(error =>console.log(error))
+						
+						})
+					}
+						
 				})
-				.catch(error => console.log(error))			
+				.catch(error => console.log(error))
+				
+			
 }
-
-const menuActive = ()=>{
-	burger.addEventListener('click',()=>{
-		nav.classList.remove("desactiv"),nav.classList.toggle("headeR__nav")
-		if(!nav.classList.contains('headeR__nav')){
-			nav.classList.add("desactiv");
-		}
-	})
-};
-const validarUrl = (url) =>{
-	const regex = /^(ftp|http|https):\/\/[^ "]+$/;
-	return regex.test(InputUrl.value);
-	
-};
 const errorInput= ()=>{
 	document.querySelector('form').addEventListener('submit',(e)=>{
 		e.preventDefault()
@@ -65,7 +73,7 @@ const errorInput= ()=>{
 				const parrafo = document.createElement('p');
 				parrafo.innerHTML = 'Escribe una URL correcta ej : "https://google.com"';
                 parrafo.setAttribute('class', 'errorINPUT');
-                InputUrl.insertAdjacentElement('afterend', parrafo);
+                InputUrl.insertAdjacentElement('afterend', parrafo); 
 			};
 		}else{
 			if(erRepetido){
@@ -73,26 +81,21 @@ const errorInput= ()=>{
 			}
 			EnviarPeticon(InputUrl.value)
 			
-			
-			
 		};
 	});	
 };
 
-/*
-	 <section class="Links__copy ">
-      <div class="Links__copy-url">
-        <p>hhht\\google weon.com</p>
-      </div>
-      <div class="Links__copy-bt">
-        <p>Lorem ipsum dolor sit amet consecm </p>
-        <button class="Links__copy-bton">Copy</button>
-      </div>
-    </section>
 
-*/
 errorInput()
 menuActive()
+
+
+	
+
+	
+
+	
+	  
 
 
 

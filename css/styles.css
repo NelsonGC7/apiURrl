@@ -167,7 +167,7 @@ body{
     position: relative;
     a{
         cursor: pointer;
-       
+        
     
     
     }
@@ -266,6 +266,7 @@ body{
     a{
         color: var(--Cyan);
         font-size: 20px;
+        width: fit-content;
     
     }
     button{
@@ -286,6 +287,12 @@ body{
     color: #fff;
     font-size: 15px;
     cursor: pointer;
+    transition: background-color 1s ease;
+    &:hover{
+        background-color: var(--GrayishViolet);
+         
+    
+    }
 
 }
 .statistics{
