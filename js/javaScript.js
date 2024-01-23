@@ -13,7 +13,7 @@ const menuActive = ()=>{
 		}
 	})
 };
-const validarUrl = (url) =>{
+const validarUrl = () =>{
 	const regex = /^(ftp|http|https):\/\/[^ "]+$/;
 	return regex.test(InputUrl.value);
 	
@@ -52,8 +52,23 @@ const EnviarPeticon = (urrl)=>{
 						const btonCopy = document.querySelector('.Links__copy').children[1].children[1];
 						const txtAcopy = document.querySelector('.Links__copy').children[1].children[0];
 						btonCopy.addEventListener('click',()=>{
+							const todos = document.querySelectorAll('.Links__copy');
+									todos.forEach(texto =>{
+										const CopyBton = texto.children[1].children[1];
+										
+										if(CopyBton.innerText ==='Copied!'){
+											CopyBton.innerText = 'Copy';
+											CopyBton.style.backgroundColor = ''
+											
+										}
+									})
 							navigator.clipboard.writeText(txtAcopy.innerHTML)
-								.then(()=>console.log('texto con exito'))
+								.then(()=>{
+									
+					
+									btonCopy.innerText = 'Copied!';
+									btonCopy.style.backgroundColor = 'hsl(257, 7%, 63%)'
+								})
 								.catch(error =>console.log(error))
 						
 						})
