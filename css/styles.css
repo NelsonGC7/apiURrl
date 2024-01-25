@@ -494,7 +494,6 @@ body{
     .desactiv{
         width: 100%;
         margin: 0 auto;
-       
         color:var(--GrayishViolet);
         font-weight: 600;
         display: flex;
@@ -585,10 +584,6 @@ body{
     
     .Links__section{
         max-width: 100%;
-        
-        
-       
-    
     }
     .Links__formulario{
         
@@ -646,6 +641,8 @@ body{
         max-width: 100%;
     }
     .statistics__contein{
+        max-width:85%;
+        margin: 0 auto;
         flex-direction: row;
         height: 26rem;
         gap: 3rem;
@@ -674,6 +671,23 @@ body{
     .statistics__info{
         height: max-content;
         max-height: 410px;
+        text-align: left;
+        padding: 0 1.5rem 1.5rem 2.5rem;
+        .redondo{
+            position: relative;
+            bottom: 50px;
+            background-color: var(--DarkViolet);
+            transform: translateX(-110%);
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index:3;
+        }
+            
         
     }
     .btnBottom{
