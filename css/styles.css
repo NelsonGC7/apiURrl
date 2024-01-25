@@ -676,6 +676,45 @@ body{
         max-height: 410px;
         
     }
+    .btnBottom{
+        font-size: 30px;
+        background-image: url(/images/bg-boost-desktop.svg);
+        button {
+            width: 13.5rem;
+            height: 4.5rem;
+            border: none;
+            border-radius: 45px;
+            font-family: var(--pipons);
+            font-weight: 800;
+            font-size: 28px;
+            
+        }
+        
+        
+    }
+    .Foter {
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items:start;
+        gap: 25px;
+        padding-top: 3.5rem;
+        min-height: 22.3125rem;
+        h4{
+            padding-bottom: 1.5rem;
+        }
+       
+    .Foter__navs {
+        flex-direction: row;
+        gap: 35px;
+    }
+    .Foter__navs-text {
+        display: flex;
+        flex-direction: column;
+        align-items: normal;
+        gap: 15px;
+      }
+    
+}
     @media (min-width:1200px) {
         .Started__img{
             img{
