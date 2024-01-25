@@ -62,18 +62,19 @@ const EnviarPeticon = (urrl)=>{
 											
 										}
 									})
-							navigator.clipboard.writeText(txtAcopy.innerHTML)
+								navigator.clipboard.writeText(txtAcopy.innerHTML)
 								.then(()=>{
-									
-					
 									btonCopy.innerText = 'Copied!';
 									btonCopy.style.backgroundColor = 'hsl(257, 7%, 63%)'
 								})
-								.catch(error =>console.log(error))
+								.catch(error =>{
+									console.log(error)
+									
+								})
 						
 						})
 					}
-						
+				return 
 				})
 				.catch(error => console.log(error))
 				
