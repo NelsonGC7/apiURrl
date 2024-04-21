@@ -1,4 +1,4 @@
-const burger = document.getElementById('burger');
+seconst burger = document.getElementById('burger');
 const nav = document.getElementById('headeR_navID');
 const InputUrl = document.getElementById('URL');
 const bton = document.getElementById('headeR__subl-btonID');
@@ -80,7 +80,7 @@ const EnviarPeticon = (urrl)=>{
 				
 				})
 				.catch(error =>{
-					console.log('hols')
+					console.log('error')
 				})
 				
 		
