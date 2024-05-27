@@ -1,4 +1,4 @@
-seconst burger = document.getElementById('burger');
+const burger = document.getElementById('burger');
 const nav = document.getElementById('headeR_navID');
 const InputUrl = document.getElementById('URL');
 const bton = document.getElementById('headeR__subl-btonID');
