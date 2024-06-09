@@ -20,7 +20,7 @@ const validarUrl = () =>{
 	
 };
 const EnviarPeticon = (urrl)=>{
-	const url = 'https://url-shortener23.p.rapidapi.com/shorten';
+	/*const url = 'https://url-shortener23.p.rapidapi.com/shorten';
 	const options = {
 		method: 'POST',
 		headers: {
@@ -31,6 +31,18 @@ const EnviarPeticon = (urrl)=>{
 		body: JSON.stringify({
 			url: `${urrl}`,
 		})
+	};*/
+	const url = 'https://url-shortener-service.p.rapidapi.com/shorten';
+	const data = new FormData();
+	data.append('url', `${urrl}`);
+	
+	const options = {
+		method: 'POST',
+		headers: {
+			'x-rapidapi-key': '60f7e74316msh27534207aad635dp1490fejsnc78d61181d90',
+			'x-rapidapi-host': 'url-shortener-service.p.rapidapi.com'
+		},
+		body: data
 	};
 
 	
@@ -40,6 +52,7 @@ const EnviarPeticon = (urrl)=>{
 				.then(data =>{
 					if(data){
 						console.log(data)
+
 						const urlContein = document.createElement('section');
 						urlContein.setAttribute('class','Links__copy')
 						urlContein.innerHTML = `
@@ -47,7 +60,7 @@ const EnviarPeticon = (urrl)=>{
 							<p>${InputUrl.value}</p>
 						</div>
 						<div class="Links__copy-bt">
-							<a href= "${data.short_url}">${data.short_url}</a>
+							<a href= "${data.result_url}">${data.result_url}</a>
 							<button class="Links__copy-bton">Copy</button>
 						</div>
 						`;
